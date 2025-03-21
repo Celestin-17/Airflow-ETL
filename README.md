@@ -12,3 +12,4 @@ This project implements a fully automated ETL pipeline using Apache Airflow and 
 # Workflow:
   - The pipeline is designed as an Apache Airflow Directed Acyclic Graph (DAG), automating the ETL tasks on a scheduled basis (daily).
 
+<img src="screenshots/Screenshot 2025-03-21 at 16.33.22.png" width=500 height=400>
