@@ -20,4 +20,4 @@ This project implements a fully automated ETL pipeline using Apache Airflow and 
 <img src="02.png" width=850 height=400>
 <img src="01.png" width=850 height=400>
 <img src="04.png" width=850 height=400>
-<img src="03.png" width=600 height=400>
+<img src="03.png" width=650 height=250>
