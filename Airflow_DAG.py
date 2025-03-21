@@ -1,25 +1,26 @@
-from datetime import timedelta
-from airflow.models import DAG
 from airflow.operators.python import PythonOperator
 from airflow.utils.dates import days_ago
 from sqlalchemy import create_engine
-import pgcopy
+from airflow.models import DAG
+from datetime import timedelta
 from io import StringIO
-import psycopg2
 import pandas as pd
+import pgcopy
+import psycopg2
 import tarfile
 import csv
 
-destination_path = ('/Users/celestin/airflow/dags/')
+destination_path = ('/your_path/to/airflow/dags/')
 pg_credentials = {
-    "dbname": "temp_db",
-    "user": "Celestin",
-    "password": "10august",
-    "host": "localhost",
+    "dbname": "<dbname>",
+    "user": "<user>",
+    "password": "<password>",
+    "host": "<hostname>",
     "port": "5432"
 }
 
 def untar_dataset():
+    """ Extracts datasets from .tgz file """
     with tarfile.open(f"{destination_path}/tolldata.tgz", "r:gz") as tar:
         tar.extractall(path=f"{destination_path}")
 
@@ -79,7 +80,7 @@ def consolidate_data():
             writer.writerow(csv_row + tsv_row + fixed_row)
 
 def transform_data():
-    """ Changes 'vehicle type' column to uppercase format """
+    """ Changes 'vehicle type' column and containing records to uppercase format """
     input_file = f"{destination_path}/extracted_data.csv"
     output_file = f"{destination_path}/transformed_data.csv"
     with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
@@ -93,6 +94,7 @@ def transform_data():
 def load_to_db():
     """ Loads 'transformed_data.csv' into postgresql db """
     try:
+        
         with psycopg2.connect(**pg_credentials) as conn:
             df = pd.read_csv(f"{destination_path}/transformed_data.csv")
             csv_buffer = StringIO()
@@ -103,7 +105,7 @@ def load_to_db():
                 cur.copy_from(csv_buffer, 'etl_transformed_data', sep=',', null='NULL')
             conn.commit()
     except Exception as e:
-        print(f"Exception occurred: {e}")
+        print(f"Exception occurred ({e})")
         raise 
     finally:
         if 'engine' in locals():
