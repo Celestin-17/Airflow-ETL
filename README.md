@@ -15,6 +15,7 @@ This project implements a fully automated ETL pipeline based on Apache Airflow a
   - Scalability: Easily adaptable for processing larger datasets by adjusting the schedule or task configuration.
   - Data Transformation: Data extraction, consolidation and transformation into a unified format ready for storage.
   - PostgreSQL Integration: Loads processed data into PostgreSQL for easy access and future analytics.
+  - In-memory Load: Final dataset loaded from in-memory buffer for performance enhancement by minimizing disk I/O.
 
 # Screenshots
 
