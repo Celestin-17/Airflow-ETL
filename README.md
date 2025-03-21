@@ -15,8 +15,7 @@ This project implements a fully automated ETL pipeline using Apache Airflow and 
   - Data Transformation: Data extraction, consolidation, and transformation into a unified format ready for storage.
   - PostgreSQL Integration: Loads processed data into PostgreSQL for easy access and future analytics.
   - 
-# Workflow:
-  - The pipeline is designed as an Apache Airflow Directed Acyclic Graph (DAG), automating the ETL tasks on a scheduled basis (daily).
+
 
 <img src="02.png" width=850 height=400>
 <img src="01.png" width=850 height=400>
