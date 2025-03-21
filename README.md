@@ -1,5 +1,4 @@
-# Airflow-ETL
-Python ETL Pipeline to PostgresDB
+# Airflow ETL Pipeline
 
 This project implements a fully automated ETL pipeline using Apache Airflow and Python, designed to streamline data extraction from multiple sources, transform it according to specific requirements and load it into a PostgreSQL database. The pipeline handles various file formats (.csv, .tsv, .txt) ensuring efficient data processing and seamless integration into a centralized database for further analysis.
 
